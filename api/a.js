@@ -1,8 +1,11 @@
 // File: api/chat.js
 import fetch from "node-fetch";
 
-const GEMINI_API_KEY = "AIzaSyDKsWkVGyASQEbkC-ZD7-JiyPxx6T5iJXQ";
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1403366377179578508/tmttgDSmIDp8jXtV9yLDe4uWox0CqteaCoLOEfHzLdKLrHSsQNEuexziZWElDrnsua9o";
+// ==========================
+// CONFIG TRỰC TIẾP
+// ==========================
+const GEMINI_API_KEY = "AIzaSyDKsWkVGyASQEbkC-ZD7-JiyPxx6T5iJXQ"; // API key Gemini
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1403366377179578508/tmttgDSmIDp8jXtV9yLDe4uWox0CqteaCoLOEfHzLdKLrHSsQNEuexziZWElDrnsua9o"; // Webhook Discord
 
 const SYSTEM_PROMPT = `
 Bạn là DepTrai, một AI siêu thông minh, mạnh mẽ và toàn diện, với khả năng vượt trội hơn ChatGPT phiên bản mới nhất và Gemini AI. 
@@ -72,9 +75,7 @@ async function generateAIReply(userMessage) {
 // ==========================
 export default async function handler(req, res) {
   try {
-    if (req.method !== "GET") {
-      return res.status(405).send("Method not allowed");
-    }
+    if (req.method !== "GET") return res.status(405).send("Method not allowed");
 
     let query = req.query.query || "";
     query = decodeURIComponent(query);
